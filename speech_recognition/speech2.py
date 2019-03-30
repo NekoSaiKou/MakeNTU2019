@@ -22,10 +22,9 @@ def open_sound():
         
 def Voice_To_Text():
     r = speech_recognition.Recognizer()
-    with speech_recognition.Microphone() as source: 
-        print("Please speak something:")
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
+    harvard = speech_recognition.AudioFile('open.wav')
+    with harvard as source: 
+        audio = r.record(source)
     try:
         Text = r.recognize_google(audio, language="zh-TW")       
     except:
