@@ -69,7 +69,15 @@ def diff(frame0,frame1):
     pass
 
 # 開啟網路攝影機
-cap = cv2.VideoCapture(1)#'video1_Trim(3).mp4'
+cap = cv2.VideoCapture(0)#'video1_Trim(3).mp4'
+if not cap.isOpened():
+    cap = cv2.VideoCapture(1)#'video1.mp4'video2_Trim.mp4
+elif not cap.isOpened():
+    cap = cv2.VideoCapture(2)
+elif not cap.isOpened():
+    cap = cv2.VideoCapture(3)
+    
+
 #cap = cv2.VideoCapture(0)
 # 設定影像尺寸
 width = 1024
