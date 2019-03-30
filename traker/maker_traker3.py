@@ -19,7 +19,7 @@ def diff(frame0,frame1):
     # 將圖片轉為灰
     black_white, canny = imgProcess(diff.copy(),30,150,50,3) #type 1: adptive 2: ostu 3: simple
     #black_white = cv2.bitwise_not(black_white)
-    cnts,  hierarchy = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    _,cnts,  hierarchy = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     #####################################################################################################
     
     l2d = []
