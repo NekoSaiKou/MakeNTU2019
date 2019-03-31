@@ -32,7 +32,7 @@ def get_distance():
 
     start = time.time()
     start_1 = start
-    stop_1 = 1
+    stop_1 = start
     while GPIO.input(GPIO_ECHO_1)==0 and time.time()- start < 0.001:
       start_1 = time.time()
     while GPIO.input(GPIO_ECHO_1)==1 and time.time()- start < 0.0022:

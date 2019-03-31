@@ -1,12 +1,12 @@
 import RPi.GPIO as GPIO
 import playwav
 import distance
-import ws2812
+#import ws2812
 import speech_recognition as sr
 import time
 import servo
+import tracker_motor
 
-import threading
 
 state = 0
 r = sr.Recognizer()
@@ -19,9 +19,8 @@ s2 = servo.Servo(27,50)
 s1.turn(0)
 s2.turn(0)
 # Tracking thread
-def tracking():
-    pass
-track = threading.Thread(target = tracking)
+tracker = tracker_motor.Tracking()
+
 # Microphone input callback
 def callback(recognizer, audio):  # this is called from the background thread
     global state
@@ -45,12 +44,13 @@ def callback(recognizer, audio):  # this is called from the background thread
         '''question mark'''
 
 def ini_start():
-    track.start()
+    tracker.resume()
+    tracker.run()
     s1.turn(140)
     s2.turn(140)
 
 def ini_stop():
-    track
+    tracker.pause()
     s1.turn(0)
     s2.turn(0)
 
@@ -63,11 +63,15 @@ def start_play():
     try:
         garbage_dis = distance.get_distance()
         print ("Distance 1 : %.1f " % garbage_dis)
-        if garbage_dis < length_threshold:
+        if garbage_dis < 3:
+            pass
+        elif garbage_dis < length_threshold:
             playwav.play(0)
-            ws2812.light(0)
+            pass
+            #ws2812.light(0)
         else:
-            ws2812.light(1)
+            pass
+            #ws2812.light(1)
     except Exception:
         pass
 
