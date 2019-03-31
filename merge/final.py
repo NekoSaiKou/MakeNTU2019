@@ -17,9 +17,9 @@ length_threshold = 16
 s1 = servo.Servo(17,50)
 s2 = servo.Servo(27,50)
 s1.turn(0)
-s2.turn(0)
+s2.turn(150)
 # Tracking thread
-tracker = tracker_motor.Tracking()
+#tracker = tracker_motor.Tracking()
 
 # Microphone input callback
 def callback(recognizer, audio):  # this is called from the background thread
@@ -44,15 +44,15 @@ def callback(recognizer, audio):  # this is called from the background thread
         '''question mark'''
 
 def ini_start():
-    tracker.resume()
-    tracker.run()
+    #tracker.resume()
+    #tracker.run()
     s1.turn(140)
-    s2.turn(140)
+    s2.turn(10)
 
 def ini_stop():
-    tracker.pause()
+    #tracker.pause()
     s1.turn(0)
-    s2.turn(0)
+    s2.turn(150)
 
 def start_recognizer():
     print("record")
